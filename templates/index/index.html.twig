@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}SymfZon
+{% endblock %}
+
+{% block body %}
+	{% for produit in produits %}
+		{% if produit.Promo %}
+			<div class="card" style="width: 18rem;">
+				<img class="card-img-top" src="{{produit.picture}}" alt="Card image cap">
+				<div class="card-body">
+					<h5 class="card-title">{{produit.name}}
+						<Span class="btn btn-danger">Promo</span>
+					</h5>
+					<p class="card-text">{{produit.description}}
+					</p>
+					<p class="card-text">{{produit.created | date('d/m/y') }}</p>
+					<a href="{{path('produit', {'id' :produit.id})}}" class="btn btn-primary">Voir le produit</a>
+					<a href="{{path('add_panier', {'id' :produit.id})}}" class="btn btn-primary">Ajouter au panier</a>
+				</div>
+			</div>
+		{% endif %}
+	{% endfor %}
+{% endblock %}
